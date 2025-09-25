@@ -1,0 +1,39 @@
+name: Matrix Calculator CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++ doxygen graphviz libgtest-dev cmake
+
+    - name: Build Google Test
+      run: |
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp lib/*.a /usr/lib
+
+    - name: Build application
+      run: |
+        g++ -std=c++17 -o matrix_app src/matrix.cpp src/main.cpp
+        g++ -std=c++17 -pthread -o test_app src/matrix.cpp src/test.cpp -lgtest -lgtest_main
+
+    - name: Run tests
+      run: ./test_app
+
+    - name: Generate documentation
+      run: doxygen Doxyfile
+
+    - name: Check for memory leaks (Valgrind)
+      run: |
+        sudo apt-get install -y valgrind
+        valgrind --leak-check=full --error-exitcode=1 ./test_app
