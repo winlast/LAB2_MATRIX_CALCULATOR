@@ -118,6 +118,62 @@ TEST(MatrixTest, Transpose) {
     free_matrix(T);
 }
 
+// Тест вычисления следа матрицы
+TEST(MatrixTest, Trace) {
+    // Создаем квадратную матрицу 3x3
+    Matrix A = create_matrix(3, 3);
+    
+    // Заполняем диагональные элементы
+    A.data[0][0] = 1.0;
+    A.data[1][1] = 2.0;
+    A.data[2][2] = 3.0;
+    
+    // Недиагональные элементы (не должны влиять на след)
+    A.data[0][1] = 5.0;
+    A.data[1][0] = 7.0;
+    
+    double trace = matrix_trace(A);
+    EXPECT_DOUBLE_EQ(trace, 6.0); // 1 + 2 + 3 = 6
+    
+    free_matrix(A);
+}
+
+// Тест на ошибку для неквадратной матрицы
+TEST(MatrixTest, TraceNonSquare) {
+    Matrix A = create_matrix(2, 3); // Неквадратная матрица
+    
+    EXPECT_THROW(matrix_trace(A), std::invalid_argument);
+    
+    free_matrix(A);
+}
+
+// Тест на ошибку для пустой матрицы
+TEST(MatrixTest, TraceEmpty) {
+    Matrix A;
+    A.data = nullptr;
+    A.rows = 0;
+    A.cols = 0;
+    
+    EXPECT_THROW(matrix_trace(A), std::invalid_argument);
+}
+
+// Тест следа единичной матрицы
+TEST(MatrixTest, TraceIdentity) {
+    Matrix A = create_matrix(4, 4);
+    
+    // Создаем единичную матрицу
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            A.data[i][j] = (i == j) ? 1.0 : 0.0;
+        }
+    }
+    
+    double trace = matrix_trace(A);
+    EXPECT_DOUBLE_EQ(trace, 4.0); // След единичной матрицы равен размерности
+    
+    free_matrix(A);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

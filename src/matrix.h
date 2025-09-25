@@ -71,4 +71,12 @@ void print_matrix(Matrix m);
  */
 Matrix matrix_from_array(double* data, int rows, int cols);
 
+/**
+ * @brief Вычисляет след матрицы (сумму диагональных элементов).
+ * @param m Исходная матрица.
+ * @return double Сумма элементов на главной диагонали.
+ * @throws std::invalid_argument Если матрица не квадратная или пустая.
+ */
+double matrix_trace(Matrix m);
+
 #endif // MATRIX_H

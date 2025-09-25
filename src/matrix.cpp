@@ -186,3 +186,22 @@ Matrix matrix_from_array(double* data, int rows, int cols) {
     }
     return mat;
 }
+
+double matrix_trace(Matrix m) {
+    // 1. Проверка валидности матрицы
+    if (m.data == nullptr || m.rows <= 0 || m.cols <= 0) {
+        throw std::invalid_argument("Matrix is empty or invalid");
+    }
+    
+    // 2. Проверка что матрица квадратная
+    if (m.rows != m.cols) {
+        throw std::invalid_argument("Matrix must be square to calculate trace");
+    }
+    
+    // 3. Вычисление суммы диагональных элементов
+    double trace = 0.0;
+    for (int i = 0; i < m.rows; i++) {
+        trace += m.data[i][i];
+    }
+    return trace;
+}

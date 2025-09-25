@@ -125,6 +125,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab25adc6286a85175b01f1545f3e8fbd4" id="r_ab25adc6286a85175b01f1545f3e8fbd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMatrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab25adc6286a85175b01f1545f3e8fbd4">matrix_from_array</a> (double *data, int rows, int cols)</td></tr>
 <tr class="memdesc:ab25adc6286a85175b01f1545f3e8fbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает матрицу из одномерного массива данных.  <br /></td></tr>
 <tr class="separator:ab25adc6286a85175b01f1545f3e8fbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc860c8c1292081f451c531b59b9bda" id="r_a8cc860c8c1292081f451c531b59b9bda"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a8cc860c8c1292081f451c531b59b9bda">matrix_trace</a> (<a class="el" href="structMatrix.html">Matrix</a> m)</td></tr>
+<tr class="memdesc:a8cc860c8c1292081f451c531b59b9bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет след матрицы (сумму диагональных элементов).  <br /></td></tr>
+<tr class="separator:a8cc860c8c1292081f451c531b59b9bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a00b3eed9347d1300084aa9b4b59faa14" name="a00b3eed9347d1300084aa9b4b59faa14"></a>
@@ -327,6 +330,39 @@ Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">std::invalid_argument</td><td>Если количество столбцов матрицы A не равно количеству строк матрицы B. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8cc860c8c1292081f451c531b59b9bda" name="a8cc860c8c1292081f451c531b59b9bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cc860c8c1292081f451c531b59b9bda">&#9670;&#160;</a></span>matrix_trace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double matrix_trace </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a>&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Вычисляет след матрицы (сумму диагональных элементов). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Исходная матрица. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double Сумма элементов на главной диагонали. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Если матрица не квадратная или пустая. </td></tr>
   </table>
   </dd>
 </dl>

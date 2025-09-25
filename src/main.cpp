@@ -43,6 +43,30 @@ int main() {
         Matrix C = matrix_from_array(arr, 2, 3);
         print_matrix(C);
 
+        // 7. Демонстрация вычисления следа матрицы
+        std::cout << "\n7. Calculating trace of matrix A..." << std::endl;
+        try {
+            double trace_A = matrix_trace(A);
+            std::cout << "Trace of matrix A: " << trace_A << std::endl;
+            
+            // Создаем квадратную матрицу для демонстрации
+            Matrix D = create_matrix(3, 3);
+            D.data[0][0] = 1; D.data[0][1] = 2; D.data[0][2] = 3;
+            D.data[1][0] = 4; D.data[1][1] = 5; D.data[1][2] = 6;
+            D.data[2][0] = 7; D.data[2][1] = 8; D.data[2][2] = 9;
+            
+            std::cout << "Matrix D (3x3):" << std::endl;
+            print_matrix(D);
+            
+            double trace_D = matrix_trace(D);
+            std::cout << "Trace of matrix D: " << trace_D << " (1 + 5 + 9 = 15)" << std::endl;
+            
+            free_matrix(D);
+    
+        } catch (const std::exception& e) {
+           std::cerr << "Error calculating trace: " << e.what() << std::endl;
+        }
+
         // 6. Освобождение памяти
         std::cout << "\n6. Freeing memory..." << std::endl;
         free_matrix(A);
